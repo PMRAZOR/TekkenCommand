@@ -245,10 +245,11 @@
       i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
     }
     // (직접 추가) 버튼
-    addImageButton(miscCell, null, "misc_button tooltip", "add-in-person", "(직접 추가)", "버튼을 추가합니다.", function() {
+    addImageButton(miscCell, null, "green_button tooltip", "add-in-person", "(직접 추가)", "버튼을 추가합니다.", function() {
       var text = prompt("원하는 문구를 넣어 직접 버튼을 추가할 수 있습니다.\n예) 특수자세, 왼플라밍고, 웨이브 등");
       if(text !=  null) {
         drawCommand(null, "misc_button tooltip", "add-in-person", text);
+        addImageButton(miscCell, null, "misc_button tooltip", null, text, null, null);
       }
     });
     // 펼치기 버튼(기타 셀)

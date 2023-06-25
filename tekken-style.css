@@ -361,6 +361,20 @@ button {
   color: seashell !important;
 }
 
+.green_button {
+  background: yellowgreen; 
+  color: #1C1A21;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  width: auto;
+  height: 25px;
+  padding: 0px 15px;
+  vertical-align: middle;
+  margin: 2px;
+  display: inline-block;
+}
+
 .misc_button {
   color: seashell;
   background-color: #990000;
