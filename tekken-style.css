@@ -357,6 +357,10 @@ button {
   color: #aaa !important;
 }
 
+.misc_white_text {
+  color: seashell !important;
+}
+
 .misc_button {
   color: seashell;
   background-color: #990000;

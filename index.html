@@ -192,6 +192,7 @@
 
     // 기타 버튼
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)");
+    addImageButton(miscCell, null, "misc_button no_background tooltip misc_white_text", null, "▶", "다음 (흰색)\n(단축키: 탭)");
     addImageButton(miscCell, null, "misc_button no_background tooltip justInput", null, "와 동시에 ", "동시 입력");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "~", "계속 유지");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "[", "빠르게 연속 입력");
@@ -616,6 +617,9 @@
           $("#stickyHeader #m0").click();
           // addImageButton(commands, null, "misc_button no_background tooltip", null, "▶", "클릭하여 삭제").onclick = function() { this.parentNode.removeChild(this); };
           break;
+        case 9: // 탭
+          $("#stickyHeader #m1").click();
+          break;
         case 13: // 엔터
           enter();
           break;
@@ -630,10 +634,10 @@
           erase();
           break;
         case 82:
-          $("#stickyHeader #m7").click();
+          $("#stickyHeader #m8").click();
           break;
         case 68:
-          $("#stickyHeader #m8").click();
+          $("#stickyHeader #m9").click();
           break;
         default:
           return;
@@ -642,8 +646,9 @@
 
     // 디버깅 코드
     if($("#stickyHeader #m0")[0].childNodes[0].nodeValue != "▶") alert("▶ id가 m0이 아닙니다. 디버깅 해주시기 바랍니다.");
-    if($("#stickyHeader #m7")[0].childNodes[0].nodeValue != "스크류") alert("스크류 id가 m7이 아닙니다. 디버깅 해주시기 바랍니다.");
-    if($("#stickyHeader #m8")[0].childNodes[0].nodeValue != "대시") alert("대시 id가 m8이 아닙니다. 디버깅 해주시기 바랍니다.");
+    if($("#stickyHeader #m1")[0].childNodes[0].nodeValue != "▶") alert("흰색 ▶ id가 m1이 아닙니다. 디버깅 해주시기 바랍니다.");
+    if($("#stickyHeader #m8")[0].childNodes[0].nodeValue != "스크류") alert("스크류 id가 m8이 아닙니다. 디버깅 해주시기 바랍니다.");
+    if($("#stickyHeader #m9")[0].childNodes[0].nodeValue != "대시") alert("대시 id가 m9이 아닙니다. 디버깅 해주시기 바랍니다.");
 
   </script>
 </body>
