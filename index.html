@@ -500,22 +500,63 @@
       document.body.removeChild(t);
     }
 
-    function makeShareURL() {
-      var commandsChildren = $("#commands>*:not(#blink-cursor)");
-      var url = (window.location.href).split("?")[0];
-      var params = "?params=";
+    function makeShareImage() {
+      $(".popup-image").empty();
+      $(".popup-window-container").css("display", "block");
 
-      // console.log(commandsChildren.length);
-      for(var i = 0; i < commandsChildren.length; i++) {
-        // console.log(i);
-        params += branchCommands(commandsChildren[i]);
-        params += "|";
-      }
-      params = params.slice(0, -1); // 제일 뒤의 | 삭제
+      // 현재 CSS 변수값들 백업
+      const originalButtonSize = getComputedStyle(document.documentElement).getPropertyValue('--commands-button-size');
+      const originalAccrueSize = getComputedStyle(document.documentElement).getPropertyValue('--accrue-font-size');
+      const originalActualInputSize = getComputedStyle(document.documentElement).getPropertyValue('--actual-input-font-size');
 
-      url += params;
-      copy2clipboard(url);
-      alert(url + "\nurl이 클립보드에 복사되었습니다.");
+      // 고해상도를 위한 임시 스타일 설정 (4배 크기)
+      document.documentElement.style.setProperty('--commands-button-size', '144px');
+      document.documentElement.style.setProperty('--accrue-font-size', '64px');
+      document.documentElement.style.setProperty('--actual-input-font-size', '40px');
+
+      // 텍스트 그림자 제거 및 기타 최적화를 위한 임시 스타일 추가
+      const tempStyle = document.createElement('style');
+      tempStyle.id = 'temp-high-res-style';
+      tempStyle.innerHTML = `
+        .misc_button { text-shadow: none !important; }
+        .expand { text-shadow: none !important; }
+        .arrow-button { text-shadow: none !important; }
+        .minimize { text-shadow: none !important; }
+        #commands br { line-height: 144px !important; }
+      `;
+      document.head.appendChild(tempStyle);
+
+      // DOM 업데이트를 위한 짧은 지연
+      setTimeout(() => {
+        html2canvas($("#commands"), {
+          scale: 1,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: null,
+          logging: false,
+          onrendered: function(canvas) {
+            // 스타일 원복
+            document.documentElement.style.setProperty('--commands-button-size', originalButtonSize);
+            document.documentElement.style.setProperty('--accrue-font-size', originalAccrueSize);
+            document.documentElement.style.setProperty('--actual-input-font-size', originalActualInputSize);
+            
+            // 임시 스타일 제거
+            const tempStyleElement = document.getElementById('temp-high-res-style');
+            if (tempStyleElement) {
+              tempStyleElement.remove();
+            }
+
+            // 이미지 표시 및 다운로드
+            $(".popup-image").append(canvas);
+
+            $("#commands").append($("<a id='temp'></a>"));
+            $("#temp").attr("href", canvas.toDataURL('image/png', 1.0));
+            $("#temp").attr("download", "tekken-commands.png");
+            $("#temp")[0].click();
+            $("#temp").remove();
+          }
+        });
+      }, 100); // 100ms 대기
     }
 
     function readShareURL() {
