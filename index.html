@@ -200,8 +200,16 @@
   	addImageButton(command2, "./images/c16.png", "cmd tooltip", "c16", null, "왼손+오른손+왼발+오른발");
 
     // 기타 버튼
-    addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)");
-    addImageButton(miscCell, null, "misc_button no_background tooltip misc_white_text", null, "▶", "다음 (흰색)\n(단축키: 탭)");
+    addImageButton(miscCell, "./images/1.png", "cmd tooltip", "1", null, "1");
+    addImageButton(miscCell, "./images/2.png", "cmd tooltip", "2", null, "2");
+    addImageButton(miscCell, "./images/3.png", "cmd tooltip", "3", null, "3");
+    addImageButton(miscCell, "./images/4.png", "cmd tooltip", "4", null, "4");
+    addImageButton(miscCell, "./images/5.png", "cmd tooltip", "5", null, "5");
+    addImageButton(miscCell, "./images/6.png", "cmd tooltip", "6", null, "6)");
+    addImageButton(miscCell, "./images/7.png", "cmd tooltip", "7", null, "7");
+    addImageButton(miscCell, "./images/8.png", "cmd tooltip", "8", null, "8");
+    addImageButton(miscCell, "./images/next.png", "cmd tooltip", "next", null, "다음\n(단축키: 스페이스바)");
+    addImageButton(miscCell, "./images/back.png", "cmd tooltip", "back", null, "다음 (흰색)\n(단축키: 탭)");
     addImageButton(miscCell, null, "misc_button no_background tooltip justInput", null, "와 동시에 ", "동시 입력");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "~", "계속 유지");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "[", "빠르게 연속 입력");
@@ -246,8 +254,9 @@
     // 기타 버튼 2
     addImageButton(miscCell, null, "misc_button tooltip", null, "스크류", "(단축키: r)");
     addImageButton(miscCell, null, "misc_button tooltip", null, "대시", "(단축키: d)");
+    addImageButton(miscCell, null, "misc_button tooltip", null, "토네이도");
     var miscList = [
-      "S", "D", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그", "히트 버스트", "HB", "히트 인게이저", "HE", "히트 버스트 캔슬", "HB Canceling", "히트 스매시", "HS", "히트 대시", "HD", "토네이도", "T"
+      "S!", "D", "T!" ,"카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그", "히트 버스트", "HB", "히트 인게이저", "HE", "히트 버스트 캔슬", "HB Canceling", "히트 스매시", "HS", "히트 대시", "HD"
     ];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
@@ -455,9 +464,9 @@
       $(".popup-window-container").css("display", "block");
 
       html2canvas($("#commands"), {
+        scale: 4,
         onrendered: function(canvas) {
           $(".popup-image").append(canvas);
-
           $("#commands").append($("<a id='temp'></a>"));
           $("#temp").attr("href", canvas.toDataURL());
           $("#temp").attr("download", "tekken-commands.png");
@@ -655,8 +664,6 @@
     });
 
     // 디버깅 코드
-    if($("#stickyHeader #m0")[0].childNodes[0].nodeValue != "▶") alert("▶ id가 m0이 아닙니다. 디버깅 해주시기 바랍니다.");
-    if($("#stickyHeader #m1")[0].childNodes[0].nodeValue != "▶") alert("흰색 ▶ id가 m1이 아닙니다. 디버깅 해주시기 바랍니다.");
     if($("#stickyHeader #m8")[0].childNodes[0].nodeValue != "스크류") alert("스크류 id가 m8이 아닙니다. 디버깅 해주시기 바랍니다.");
     if($("#stickyHeader #m9")[0].childNodes[0].nodeValue != "대시") alert("대시 id가 m9이 아닙니다. 디버깅 해주시기 바랍니다.");
 
